@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 // anotações necessárias para um Controller
 @RestController
 @RequestMapping
-public class Controller {
+public class PessoaController {
 
     // pegar informações
     @GetMapping("/boasvindas") // -> localhost:8080/boasvindas
