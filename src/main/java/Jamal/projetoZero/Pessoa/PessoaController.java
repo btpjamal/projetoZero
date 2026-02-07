@@ -1,4 +1,4 @@
-package Jamal.projetoZero;
+package Jamal.projetoZero.Pessoa;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

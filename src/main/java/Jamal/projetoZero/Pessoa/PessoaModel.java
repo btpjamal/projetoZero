@@ -1,4 +1,4 @@
-package Jamal.projetoZero;
+package Jamal.projetoZero.Pessoa;
 
 import jakarta.persistence.*;
 
