@@ -2,6 +2,15 @@ package Jamal.projetoZero.Funcao;
 
 import Jamal.projetoZero.Pessoa.PessoaModel;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data // Getters & Setters
 
 @Entity
 @Table(name = "tb_funcao")
@@ -12,49 +21,7 @@ public class FuncaoModel {
     private String nomeFuncao;
     private String ClassificacaoFuncional;
 
-    @ManyToOne
-    @JoinColumn(name = "pessoa_id")
-    private PessoaModel pessoa;
-
-    public PessoaModel getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(PessoaModel pessoa) {
-        this.pessoa = pessoa;
-    }
-
-    public FuncaoModel() {
-    }
-
-    public FuncaoModel(long id, String nomeFuncao, String classificacaoFuncional) {
-        this.id = id;
-        this.nomeFuncao = nomeFuncao;
-        ClassificacaoFuncional = classificacaoFuncional;
-    }
-
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getNomeFuncao() {
-        return nomeFuncao;
-    }
-
-    public void setNomeFuncao(String nomeFuncao) {
-        this.nomeFuncao = nomeFuncao;
-    }
-
-    public String getClassificacaoFuncional() {
-        return ClassificacaoFuncional;
-    }
-
-    public void setClassificacaoFuncional(String classificacaoFuncional) {
-        ClassificacaoFuncional = classificacaoFuncional;
-    }
+    // Uma função para várias pessoas
+    @OneToMany(mappedBy = "funcao") // mappedBy: mapeia cada pessoa por função
+    private List<PessoaModel> pessoas;
 }

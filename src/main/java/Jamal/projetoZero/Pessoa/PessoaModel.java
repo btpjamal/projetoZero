@@ -1,6 +1,14 @@
 package Jamal.projetoZero.Pessoa;
 
+import Jamal.projetoZero.Funcao.FuncaoModel;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 
 @Entity //Transforma uma classe em uma entidade do banco de dados
 @Table(name = "tb_cadastro")
@@ -13,36 +21,7 @@ public class PessoaModel {
     private String email;
     private int idade;
 
-    public PessoaModel() {
-    }
-
-    public PessoaModel(String nome, String email, int idade) {
-        this.nome = nome;
-        this.email = email;
-        this.idade = idade;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
+    @ManyToOne // Várias pessoas para uma função
+    @JoinColumn(name = "funcoes_id") // cria uma coluna nessa tabela,exerce com a id da funcao que a pessoa
+    private FuncaoModel funcao;
 }
