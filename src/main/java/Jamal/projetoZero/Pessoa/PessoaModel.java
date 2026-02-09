@@ -18,6 +18,7 @@ public class PessoaModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+    @Column(unique = true) // cada elemento deve ser unico na tabela, não permite duplicados
     private String email;
     private int idade;
 
