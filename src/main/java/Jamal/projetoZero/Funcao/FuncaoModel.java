@@ -17,7 +17,7 @@ import java.util.List;
 public class FuncaoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String nomeFuncao;
     private String ClassificacaoFuncional;
 
