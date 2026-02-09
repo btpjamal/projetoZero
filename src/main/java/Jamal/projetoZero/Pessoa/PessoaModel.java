@@ -16,10 +16,16 @@ public class PessoaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+
+    @Column(name = "nome")
     private String nome;
-    @Column(unique = true) // cada elemento deve ser unico na tabela, não permite duplicados
+
+    @Column(name = "email", unique = true) // cada elemento deve ser unico na tabela, não permite duplicados
     private String email;
+
+    @Column(name = "idade")
     private int idade;
 
     @ManyToOne // Várias pessoas para uma função

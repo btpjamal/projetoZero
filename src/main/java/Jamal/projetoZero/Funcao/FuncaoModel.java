@@ -17,8 +17,13 @@ import java.util.List;
 public class FuncaoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_funcoes")
     private Long id;
+
+    @Column(name = "nome_funcao")
     private String nomeFuncao;
+
+    @Column(name = "classificacao_funcional")
     private String ClassificacaoFuncional;
 
     // Uma função para várias pessoas
