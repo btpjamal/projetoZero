@@ -2,10 +2,19 @@ package Jamal.projetoZero.Pessoa;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 // anotações necessárias para um Controller
 @RestController
 @RequestMapping("pessoa")
 public class PessoaController {
+
+    // injetar o serviço para acessar as regras de negócio
+    private PessoaService pessoaService;
+
+    public PessoaController(PessoaService pessoaService) {
+        this.pessoaService = pessoaService;
+    }
 
     // pegar informações
     @GetMapping("/boasvindas") // -> localhost:8080/boasvindas
@@ -21,15 +30,16 @@ public class PessoaController {
 
     // Mostrar tudo (READ)
     @GetMapping("/listar")
-    public String mostrarTodasAsPessoas(){
-        return "Mostrar todas as pessoas";
+    public List<PessoaModel> mostrarTodasAsPessoas(){
+        return pessoaService.listarPessoas();
     }
 
     // Mostrar uma pessoa por ID (READ)
-    @GetMapping("/buscarID")
-    public String mostrarPessoaID(){
-        return "Mostrar pessoa por ID";
+    @GetMapping("/listar/{id}")
+    public PessoaModel mostrarPessoaID(@PathVariable Long id){
+        return pessoaService.listarPessoaPorID(id);
     }
+
 
     // Alterar uma pessoa por ID (UPDATE)
     @PutMapping("/alterar")
