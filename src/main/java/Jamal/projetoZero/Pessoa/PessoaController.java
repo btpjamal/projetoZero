@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.*;
 
 // anotações necessárias para um Controller
 @RestController
-@RequestMapping
+@RequestMapping("pessoa")
 public class PessoaController {
 
     // pegar informações
@@ -14,19 +14,19 @@ public class PessoaController {
     }
 
     // Adicionar (CREATE)
-    @PostMapping("/adicionar")
-    public String adicionarPessoa(){
-        return "Adicionar pessoa";
+    @PostMapping("/criar")
+    public String criarPessoa(){
+        return "Criar pessoa";
     }
 
     // Mostrar tudo (READ)
-    @GetMapping("/todos")
+    @GetMapping("/listar")
     public String mostrarTodasAsPessoas(){
         return "Mostrar todas as pessoas";
     }
 
     // Mostrar uma pessoa por ID (READ)
-    @GetMapping("/pessoaID")
+    @GetMapping("/buscarID")
     public String mostrarPessoaID(){
         return "Mostrar pessoa por ID";
     }

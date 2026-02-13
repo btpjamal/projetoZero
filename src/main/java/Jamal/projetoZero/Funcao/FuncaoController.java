@@ -1,15 +1,28 @@
 package Jamal.projetoZero.Funcao;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("funcoes")
 public class FuncaoController {
 
-    @GetMapping("/funcao")
-    public String teste(){
-        return "teste teste";
+    @PostMapping("/criar")
+    public String criarFuncao() {
+        return "Criar função";
+    }
+
+    @PutMapping("/alterar")
+    public String alterarFuncao() {
+        return "Alterar função";
+    }
+
+    @GetMapping("/listar")
+    public String listarFuncoes() {
+        return "Listar funções";
+    }
+
+    @DeleteMapping("/deletar")
+    public String deletarFuncao() {
+        return "Deletar função";
     }
 }
