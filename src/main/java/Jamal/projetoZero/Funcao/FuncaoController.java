@@ -11,14 +11,19 @@ public class FuncaoController {
         return "Criar função";
     }
 
-    @PutMapping("/alterar")
-    public String alterarFuncao() {
-        return "Alterar função";
-    }
-
     @GetMapping("/listar")
     public String listarFuncoes() {
         return "Listar funções";
+    }
+
+    @GetMapping("/listar/{id}")
+    // essa função é do tipo objeto
+
+
+
+    @PutMapping("/alterar")
+    public String alterarFuncao() {
+        return "Alterar função";
     }
 
     @DeleteMapping("/deletar")
