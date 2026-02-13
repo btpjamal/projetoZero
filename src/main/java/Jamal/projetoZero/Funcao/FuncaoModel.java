@@ -1,6 +1,7 @@
 package Jamal.projetoZero.Funcao;
 
 import Jamal.projetoZero.Pessoa.PessoaModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,5 +29,6 @@ public class FuncaoModel {
 
     // Uma função para várias pessoas
     @OneToMany(mappedBy = "funcao") // mappedBy: mapeia cada pessoa por função
+    @JsonIgnore // Ignorar a lista de pessoas ao serializar a função para evitar recursão infinita
     private List<PessoaModel> pessoas;
 }
