@@ -17,7 +17,6 @@ import java.util.List;
 @Table(name = "tb_funcao")
 public class FuncaoModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_funcoes")
     private Long id;
 
