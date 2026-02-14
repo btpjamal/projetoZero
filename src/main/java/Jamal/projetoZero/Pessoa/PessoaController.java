@@ -24,8 +24,8 @@ public class PessoaController {
 
     // Adicionar (CREATE)
     @PostMapping("/criar")
-    public String criarPessoa(){
-        return "Criar pessoa";
+    public PessoaModel criarPessoa(@RequestBody PessoaModel pessoaModel){
+        return pessoaService.inserirPessoa(pessoaModel);
     }
 
     // Mostrar tudo (READ)
