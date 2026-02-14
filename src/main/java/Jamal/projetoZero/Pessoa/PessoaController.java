@@ -16,11 +16,6 @@ public class PessoaController {
         this.pessoaService = pessoaService;
     }
 
-    // pegar informações
-    @GetMapping("/boasvindas") // -> localhost:8080/boasvindas
-    public String boasVindas(){
-        return "Primeira mensagem nessa rota";
-    }
 
     // Adicionar (CREATE)
     @PostMapping("/criar")
@@ -42,14 +37,14 @@ public class PessoaController {
 
 
     // Alterar uma pessoa por ID (UPDATE)
-    @PutMapping("/alterar")
-    public String alterarPessoaID(){
-        return "Alterar pessoa por ID";
+    @PutMapping("/alterar/{id}")
+    public PessoaModel alterarPessoa(@PathVariable Long id, @RequestBody PessoaModel pessoaAtualizada){
+        return pessoaService.atualizarPessoa(id, pessoaAtualizada);
     }
 
     // Deletar pessoa por ID (DELETE)
-    @DeleteMapping("/deletar")
-    public String deletarPessoaID(){
-        return "Deletar pessoa por ID";
+    @DeleteMapping("/deletar/{id}")
+    public void deletarPessoa(@PathVariable Long id){
+        pessoaService.deletarPessoa(id);
     }
 }

@@ -12,6 +12,7 @@ public class PessoaService {
     public PessoaService(PessoaRepository pessoaRepository) {
         this.pessoaRepository = pessoaRepository;
     }
+
     // Inserir nova pessoa (CREATE)
     public PessoaModel inserirPessoa(PessoaModel pessoa) {
         return pessoaRepository.save(pessoa);
