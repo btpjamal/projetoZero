@@ -31,4 +31,7 @@ public class PessoaModel {
     @ManyToOne // Várias pessoas para uma função
     @JoinColumn(name = "funcoes_id") // cria uma coluna nessa tabela,exerce com a id da funcao que a pessoa
     private FuncaoModel funcao;
+
+    @Column(name = "cpf", unique = true)
+    private String cpf;
 }
