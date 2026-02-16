@@ -13,6 +13,7 @@ public class PessoaService {
 
     public PessoaService(PessoaRepository pessoaRepository) {
         this.pessoaRepository = pessoaRepository;
+        this.pessoaMapper = new PessoaMapper(); // inicializa o mapper
     }
 
     // Inserir nova pessoa (CREATE)
@@ -25,7 +26,9 @@ public class PessoaService {
     //Listar todas as pessoas (READ)
     public List<PessoaDTO> listarPessoas() {
         List<PessoaModel> pessoas = pessoaRepository.findAll(); // busca todas as pessoas no banco de dados
-        return pessoaMapper.map(pessoas); // converte a lista de Model para lista de DTO e retorna
+        return pessoas.stream()
+                .map(pessoaMapper::map) // converte cada PessoaModel para PessoaDTO
+                .toList(); // coleta os resultados em uma lista e retorna
     }
 
     // Listar pessoa por ID (READ)
@@ -44,7 +47,9 @@ public class PessoaService {
         // Atualiza os campos da pessoa existente com os dados da pessoa atualizada
         pessoaExistente.setNome(pessoaAtualizada.getNome());
         pessoaExistente.setIdade(pessoaAtualizada.getIdade());
-        // ... atualize outros campos conforme necessário
+        pessoaExistente.setEmail(pessoaAtualizada.getEmail());
+        pessoaExistente.setCpf(pessoaAtualizada.getCpf());
+        pessoaExistente.setFuncao(pessoaAtualizada.getFuncao());
 
         PessoaModel pessoaSalva = pessoaRepository.save(pessoaExistente); // salva as alterações no banco de dados
         return pessoaMapper.map(pessoaSalva); // converte o Model atualizado para DTO e retorna

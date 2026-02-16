@@ -2,8 +2,6 @@ package Jamal.projetoZero.Pessoa;
 
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
 public class PessoaMapper {
 
@@ -29,9 +27,4 @@ public class PessoaMapper {
         return pessoaDTO;
     }
 
-    public List<PessoaDTO> map(List<PessoaModel> pessoas) {
-        return pessoas.stream()
-                .map(this::map) // converte cada PessoaModel para PessoaDTO usando o método map acima
-                .toList(); // coleta os resultados em uma lista
-    }
 }
