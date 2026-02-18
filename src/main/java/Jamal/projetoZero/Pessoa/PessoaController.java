@@ -38,7 +38,7 @@ public class PessoaController {
 
     // Alterar uma pessoa por ID (UPDATE)
     @PutMapping("/alterar/{id}")
-    public PessoaDTO alterarPessoa(@PathVariable Long id, @RequestBody PessoaModel pessoaAtualizada){
+    public PessoaDTO alterarPessoa(@PathVariable Long id, @RequestBody PessoaDTO pessoaAtualizada){
         return pessoaService.atualizarPessoa(id, pessoaAtualizada);
     }
 

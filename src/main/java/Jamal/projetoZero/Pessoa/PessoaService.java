@@ -11,9 +11,10 @@ public class PessoaService {
     // injetando o mapper para converter entre PessoaModel e PessoaDTO
     private PessoaMapper pessoaMapper;
 
-    public PessoaService(PessoaRepository pessoaRepository) {
+
+    public PessoaService(PessoaRepository pessoaRepository, PessoaMapper pessoaMapper) {
         this.pessoaRepository = pessoaRepository;
-        this.pessoaMapper = new PessoaMapper(); // inicializa o mapper
+        this.pessoaMapper = pessoaMapper; // inicializa o mapper
     }
 
     // Inserir nova pessoa (CREATE)
@@ -40,7 +41,7 @@ public class PessoaService {
 
 
     // Atualizar pessoa por ID (UPDATE)
-    public PessoaDTO atualizarPessoa(Long id, PessoaModel pessoaAtualizada) {
+    public PessoaDTO atualizarPessoa(Long id, PessoaDTO pessoaAtualizada) {
         PessoaModel pessoaExistente = pessoaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Pessoa não encontrada com ID: " + id)); // busca a pessoa por ID, lança exceção se não encontrar
 
