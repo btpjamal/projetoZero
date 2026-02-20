@@ -12,7 +12,7 @@ import java.util.List;
 public class PessoaController {
 
     // injetar o serviço para acessar as regras de negócio
-    private PessoaService pessoaService;
+    private final PessoaService pessoaService;
 
     public PessoaController(PessoaService pessoaService) {
         this.pessoaService = pessoaService;

@@ -7,9 +7,9 @@ import java.util.List;
 @Service
 public class PessoaService {
     // injetando o repositório para acessar os dados
-    private PessoaRepository pessoaRepository;
+    private final PessoaRepository pessoaRepository;
     // injetando o mapper para converter entre PessoaModel e PessoaDTO
-    private PessoaMapper pessoaMapper;
+    private final PessoaMapper pessoaMapper;
 
 
     public PessoaService(PessoaRepository pessoaRepository, PessoaMapper pessoaMapper) {
