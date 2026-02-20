@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tabela de pessoas</title>
+</head>
+<body>
+<h1>Lista de Pessoas</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Idade</th>
+        <th>Função</th>
+        <th>Cpf</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="pessoa : ${pessoas}">
+        <td th:text="${pessoa.id}"></td>
+        <td th:text="${pessoa.nome}"></td>
+        <td th:text="${pessoa.email}"></td>
+        <td th:text="${pessoa.idade}"></td>
+        <td th:text="${pessoa.funcao}"></td>
+        <td th:text="${pessoa.cpf}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
