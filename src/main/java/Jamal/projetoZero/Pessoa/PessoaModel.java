@@ -5,10 +5,12 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@ToString(exclude = "funcao")
 
 @Entity //Transforma uma classe em uma entidade do banco de dados
 @Table(name = "tb_cadastro")

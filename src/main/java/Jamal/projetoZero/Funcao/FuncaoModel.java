@@ -6,12 +6,14 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data // Getters & Setters
+@ToString
 
 @Entity
 @Table(name = "tb_funcao")
