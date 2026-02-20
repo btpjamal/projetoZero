@@ -19,26 +19,26 @@ public class PessoaController {
 
     // Adicionar (CREATE)
     @PostMapping("/criar")
-    public PessoaModel criarPessoa(@RequestBody PessoaModel pessoaModel){
-        return pessoaService.inserirPessoa(pessoaModel);
+    public PessoaDTO criarPessoa(@RequestBody PessoaDTO pessoaDTO){
+        return pessoaService.inserirPessoa(pessoaDTO);
     }
 
     // Mostrar tudo (READ)
     @GetMapping("/listar")
-    public List<PessoaModel> mostrarTodasAsPessoas(){
+    public List<PessoaDTO> mostrarTodasAsPessoas(){
         return pessoaService.listarPessoas();
     }
 
     // Mostrar uma pessoa por ID (READ)
     @GetMapping("/listar/{id}")
-    public PessoaModel mostrarPessoaID(@PathVariable Long id){
+    public PessoaDTO mostrarPessoaID(@PathVariable Long id){
         return pessoaService.listarPessoaPorID(id);
     }
 
 
     // Alterar uma pessoa por ID (UPDATE)
     @PutMapping("/alterar/{id}")
-    public PessoaModel alterarPessoa(@PathVariable Long id, @RequestBody PessoaModel pessoaAtualizada){
+    public PessoaDTO alterarPessoa(@PathVariable Long id, @RequestBody PessoaDTO pessoaAtualizada){
         return pessoaService.atualizarPessoa(id, pessoaAtualizada);
     }
 

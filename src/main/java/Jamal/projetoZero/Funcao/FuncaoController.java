@@ -17,26 +17,26 @@ public class FuncaoController {
     }
 
     @PostMapping("/criar")
-    public ResponseEntity<FuncaoModel> criarFuncao(@RequestBody FuncaoModel funcao) {
-        FuncaoModel novaFuncao = funcaoService.inserirFuncao(funcao);
+    public ResponseEntity<FuncaoDTO> criarFuncao(@RequestBody FuncaoDTO funcao) {
+        FuncaoDTO novaFuncao = funcaoService.inserirFuncao(funcao);
         return ResponseEntity.status(HttpStatus.CREATED).body(novaFuncao);
     }
 
     @GetMapping("/listar")
-    public ResponseEntity<List<FuncaoModel>> listarFuncoes() {
-        List<FuncaoModel> funcoes = funcaoService.listarFuncaos();
+    public ResponseEntity<List<FuncaoDTO>> listarFuncoes() {
+        List<FuncaoDTO> funcoes = funcaoService.listarFuncaos();
         return ResponseEntity.ok(funcoes);
     }
 
     @GetMapping("/listar/{id}")
-    public ResponseEntity<FuncaoModel> listarFuncaoPorId(@PathVariable Long id) {
-        FuncaoModel funcao = funcaoService.listarFuncaoPorID(id);
+    public ResponseEntity<FuncaoDTO> listarFuncaoPorId(@PathVariable Long id) {
+        FuncaoDTO funcao = funcaoService.listarFuncaoPorID(id);
         return ResponseEntity.ok(funcao);
     }
 
     @PutMapping("/alterar/{id}")
-    public ResponseEntity<FuncaoModel> alterarFuncao(@PathVariable Long id, @RequestBody FuncaoModel funcaoAtualizada) {
-        FuncaoModel funcaoModificada = funcaoService.atualizarFuncao(id, funcaoAtualizada);
+    public ResponseEntity<FuncaoDTO> alterarFuncao(@PathVariable Long id, @RequestBody FuncaoDTO funcaoAtualizada) {
+        FuncaoDTO funcaoModificada = funcaoService.atualizarFuncao(id, funcaoAtualizada);
         return ResponseEntity.ok(funcaoModificada);
     }
 
