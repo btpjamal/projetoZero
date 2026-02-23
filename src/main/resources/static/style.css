@@ -1,0 +1,73 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: #f5f7fa;
+  color: #333;
+  padding: 2rem;
+}
+
+/* Estilo do fieldset */
+fieldset {
+  border: 2px solid #4a90e2;
+  border-radius: 8px;
+  padding: 1.5rem;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+legend h1 {
+  font-size: 1.5rem;
+  color: #4a90e2;
+  font-weight: 600;
+}
+
+/* Estilo da tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+thead {
+  background: #4a90e2;
+  color: #fff;
+}
+
+thead th {
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+tbody tr {
+  border-bottom: 1px solid #ddd;
+  transition: background 0.2s ease-in-out;
+}
+
+tbody tr:hover {
+  background: #f0f8ff;
+}
+
+td {
+  padding: 0.75rem;
+}
+
+/* Links de ação */
+td a {
+  margin-right: 0.5rem;
+  text-decoration: none;
+  color: #4a90e2;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+}
+
+td a:hover {
+  color: #2c6fb2;
+  text-decoration: underline;
+}

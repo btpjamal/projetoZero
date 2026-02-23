@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tabela de pessoas</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
 </head>
 <body>
-<h1>Lista de Pessoas</h1>
+<fieldset>
+<legend><h1>Lista de Pessoas</h1></legend>
 <table>
     <thead>
     <tr>
@@ -14,8 +16,11 @@
         <th>Nome</th>
         <th>Email</th>
         <th>Idade</th>
-        <th>Função</th>
         <th>Cpf</th>
+        <th>Função</th>
+
+
+
     </tr>
     </thead>
     <tbody>
@@ -24,10 +29,17 @@
         <td th:text="${pessoa.nome}"></td>
         <td th:text="${pessoa.email}"></td>
         <td th:text="${pessoa.idade}"></td>
-        <td th:text="${pessoa.funcao}"></td>
         <td th:text="${pessoa.cpf}"></td>
+        <td th:text="${pessoa.funcao.nomeFuncao}"></td>
+
+        <td>
+            <a th:href="@{/pessoa/ui/listar/{id}(id=${pessoa.id})}">Ver detalhes</a>
+            <a th:href="@{/pessoa/ui/alterar/{id}(id=${pessoa.id})}">Alterar</a>
+            <a th:href="@{/pessoa/ui/deletar/{id}(id=${pessoa.id})}">Deletar</a>
+        </td>
     </tr>
     </tbody>
 </table>
+    </fieldset>
 </body>
 </html>

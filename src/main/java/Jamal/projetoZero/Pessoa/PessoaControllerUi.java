@@ -37,34 +37,28 @@ public class PessoaControllerUi {
     // Mostrar uma pessoa por ID (READ)
     @GetMapping("/listar/{id}")
     public String mostrarPessoaID(@PathVariable Long id, Model model){
-        if(pessoaService.listarPessoaPorID(id) == null){
-            model.addAttribute("errorMessage", "Pessoa não encontrada para o ID: " + id);
-            return "error";
-        }
         PessoaDTO pessoa = pessoaService.listarPessoaPorID(id);
-        model.addAttribute("pessoa", pessoa);
-        return "ListarPessoasID";
+        if (pessoa != null) {
+            model.addAttribute("pessoa", pessoa);
+            return "detalhesPessoa";
+        } else {
+            model.addAttribute("pessoa", pessoa);
+            return "ListarPessoas"; // ou uma página de erro personalizada
+        }
     }
 
 
     // Alterar uma pessoa por ID (UPDATE)
     @PutMapping("/alterar/{id}")
-    public ResponseEntity<?> alterarPessoa(@PathVariable Long id, @RequestBody PessoaDTO pessoaAtualizada){
-        if(pessoaService.listarPessoaPorID(id) == null){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pessoa não encontrada para o ID: " + id);
-        }
+    public String alterarPessoa(@PathVariable Long id, @RequestBody PessoaDTO pessoaAtualizada){
         pessoaService.atualizarPessoa(id, pessoaAtualizada);
-        return ResponseEntity.ok(pessoaAtualizada);
+        return "redirect:/pessoa/ui/listarPessoas";
     }
 
     // Deletar pessoa por ID (DELETE)
-    @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<String> deletarPessoa(@PathVariable Long id){
-        if(pessoaService.listarPessoaPorID(id) != null){
-            pessoaService.deletarPessoa(id);
-            return ResponseEntity.ok("Pessoa deletada com sucesso!");
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pessoa não encontrada para o ID: " + id);
-        }
+    @GetMapping("/deletar/{id}")
+    public String deletarPessoa(@PathVariable Long id){
+        pessoaService.deletarPessoa(id);
+        return "redirect:/pessoa/ui/listar";
     }
 }
