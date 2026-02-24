@@ -1,5 +1,8 @@
 package Jamal.projetoZero.Pessoa;
 
+import Jamal.projetoZero.Funcao.FuncaoDTO;
+import Jamal.projetoZero.Funcao.FuncaoModel;
+import Jamal.projetoZero.Funcao.FuncaoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,11 +13,18 @@ public class PessoaService {
     private final PessoaRepository pessoaRepository;
     // injetando o mapper para converter entre PessoaModel e PessoaDTO
     private final PessoaMapper pessoaMapper;
+    private final FuncaoRepository funcaoRepository;
 
-
-    public PessoaService(PessoaRepository pessoaRepository, PessoaMapper pessoaMapper) {
+    public PessoaService(PessoaRepository pessoaRepository, PessoaMapper pessoaMapper, FuncaoRepository funcaoRepository) {
         this.pessoaRepository = pessoaRepository;
         this.pessoaMapper = pessoaMapper; // inicializa o mapper
+        this.funcaoRepository = funcaoRepository;
+    }
+
+    public FuncaoDTO listarFuncaoPorID(Long id) {
+        FuncaoModel funcao = funcaoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Função não encontrada com ID: " + id));
+        return new FuncaoDTO(funcao.getId(), funcao.getNomeFuncao(), funcao.getClassificacaoFuncional(), null);
     }
 
     // Inserir nova pessoa (CREATE)
@@ -50,7 +60,12 @@ public class PessoaService {
         pessoaExistente.setIdade(pessoaAtualizada.getIdade());
         pessoaExistente.setEmail(pessoaAtualizada.getEmail());
         pessoaExistente.setCpf(pessoaAtualizada.getCpf());
-        pessoaExistente.setFuncao(pessoaAtualizada.getFuncao());
+        // Atualiza a função apenas se for diferente da função atual
+        if (pessoaAtualizada.getFuncao() != null && pessoaAtualizada.getFuncao().getId() != null) {
+            FuncaoModel novaFuncao = funcaoRepository.findById(pessoaAtualizada.getFuncao().getId())
+                    .orElseThrow(() -> new RuntimeException("Função não encontrada"));
+            pessoaExistente.setFuncao(novaFuncao);
+        }
 
         PessoaModel pessoaSalva = pessoaRepository.save(pessoaExistente); // salva as alterações no banco de dados
         return pessoaMapper.map(pessoaSalva); // converte o Model atualizado para DTO e retorna

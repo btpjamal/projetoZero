@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tabela de Funções</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+</head>
+<body>
+<fieldset>
+    <legend><h1>Lista de Funções</h1></legend>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Classificação</th>
+            <th>Encarregados</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="funcao : ${funcoes}">
+            <td th:text="${funcao.id}"></td>
+            <td th:text="${funcao.nome}"></td>
+            <td th:text="${funcao.funcao != null ? funcao.nomeFuncao : 'Sem função'}"></td>
+
+            <td>
+                <a th:href="@{/pessoa/ui/listar/{id}(id=${pessoa.id})}" class="botao">Ver detalhes</a>
+                <a th:href="@{/pessoa/ui/alterar/{id}(id=${pessoa.id})}" class="botao">Alterar</a>
+                <a th:href="@{/pessoa/ui/deletar/{id}(id=${pessoa.id})}" class="botao">Deletar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</fieldset>
+<a th:href="@{/menu}" class="botao">Voltar</a>
+</body>
+</html>

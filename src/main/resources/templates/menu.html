@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Menu</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+</head>
+<body>
+    <fieldset>
+    <legend><h1>Menu</h1></legend>
+        <a th:href="@{/pessoa/ui/listar}" class="botao">Listar Pessoas</a><br>
+        <a th:href="@{/funcao/ui/listar}" class="botao">Listar Funções</a><br>
+        <a th:href="@{/pessoa/ui/cadastrar}" class="botao">Cadastrar Pessoa</a><br>
+        <a th:href="@{/funcao/ui/cadastrar}" class="botao">Cadastrar Função</a><br>
+    </fieldset>
+</body>
+</html>

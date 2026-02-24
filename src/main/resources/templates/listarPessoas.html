@@ -14,32 +14,24 @@
     <tr>
         <th>ID</th>
         <th>Nome</th>
-        <th>Email</th>
-        <th>Idade</th>
-        <th>Cpf</th>
         <th>Função</th>
-
-
-
     </tr>
     </thead>
     <tbody>
     <tr th:each="pessoa : ${pessoas}">
         <td th:text="${pessoa.id}"></td>
         <td th:text="${pessoa.nome}"></td>
-        <td th:text="${pessoa.email}"></td>
-        <td th:text="${pessoa.idade}"></td>
-        <td th:text="${pessoa.cpf}"></td>
-        <td th:text="${pessoa.funcao.nomeFuncao}"></td>
+        <td th:text="${pessoa.funcao != null ? pessoa.funcao.nomeFuncao : 'Sem função'}"></td>
 
         <td>
-            <a th:href="@{/pessoa/ui/listar/{id}(id=${pessoa.id})}">Ver detalhes</a>
-            <a th:href="@{/pessoa/ui/alterar/{id}(id=${pessoa.id})}">Alterar</a>
-            <a th:href="@{/pessoa/ui/deletar/{id}(id=${pessoa.id})}">Deletar</a>
+            <a th:href="@{/pessoa/ui/listar/{id}(id=${pessoa.id})}" class="botao">Ver detalhes</a>
+            <a th:href="@{/pessoa/ui/alterar/{id}(id=${pessoa.id})}" class="botao">Alterar</a>
+            <a th:href="@{/pessoa/ui/deletar/{id}(id=${pessoa.id})}" class="botao">Deletar</a>
         </td>
     </tr>
     </tbody>
 </table>
     </fieldset>
+<a th:href="@{/menu}" class="botao">Voltar</a>
 </body>
 </html>

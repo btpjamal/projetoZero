@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Listar pessoa pelo ID</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+</head>
+<body>
+<fieldset>
+    <legend><h1>Informações da pessoa</h1></legend>
+    <table>
+        <tbody>
+        <tr>
+            <td><strong>ID</strong></td>
+            <td th:text="${pessoa.id}"></td>
+        </tr>
+        <tr>
+            <td><strong>Nome</strong></td>
+            <td th:text="${pessoa.nome}"></td>
+        </tr>
+        <tr>
+            <td><strong>Email</strong></td>
+            <td th:text="${pessoa.email}"></td>
+        </tr>
+        <tr>
+            <td><strong>Idade</strong></td>
+            <td th:text="${pessoa.idade}"></td>
+        </tr>
+        <tr>
+            <td><strong>CPF</strong></td>
+            <td th:text="${pessoa.cpf}"></td>
+        </tr>
+
+        </tbody>
+    </table>
+</fieldset>
+<fieldset>
+    <legend><h1>Informações da função</h1></legend>
+    <table>
+        <tbody>
+        <tr>
+            <td><strong>ID</strong></td>
+            <td th:text="${pessoa.funcao?.id}"></td>
+        </tr>
+        <tr>
+            <td><strong>nome da função</strong></td>
+            <td th:text="${pessoa.funcao?.nomeFuncao}"></td>
+        </tr>
+        <tr>
+            <td><strong>Classificação da função</strong></td>
+            <td th:text="${pessoa.funcao?.ClassificacaoFuncional}"></td>
+        </tr>
+        </tbody>
+    </table>
+</fieldset>
+<a th:href="@{/pessoa/ui/listar}" class="botao">Voltar</a>
+</body>
+</html>

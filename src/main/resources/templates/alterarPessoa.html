@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alterar Pessoa</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+</head>
+<body>
+<form th:action="@{/pessoa/ui/alterar/{id}(id=${pessoa.id})}" method="post">
+<fieldset>
+    <legend><h1>Alterar Dados da Pessoa</h1></legend>
+
+        <div>
+            <label for="id">ID:</label>
+            <input type="text" id="id" th:value="${pessoa.id}" disabled readonly>
+        </div>
+
+        <div>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" th:value="${pessoa.nome}" required>
+        </div>
+
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" th:value="${pessoa.email}" required>
+        </div>
+
+        <div>
+            <label for="idade">Idade:</label>
+            <input type="number" id="idade" name="idade" th:value="${pessoa.idade}" required>
+        </div>
+
+        <div>
+            <label for="cpf">CPF:</label>
+            <input type="text" id="cpf" name="cpf" th:value="${pessoa.cpf}" required>
+        </div>
+
+</fieldset>
+
+<fieldset>
+    <legend><h1>Informações da Função</h1></legend>
+    <table>
+        <tbody>
+        <tr>
+            <td><strong>ID / Seleção</strong></td>
+            <td>
+                <select id="funcao" name="funcao.id">
+                    <option value="">-- manter função atual --</option>
+                    <option th:each="f : ${funcoes}"
+                            th:value="${f.id}"
+                            th:text="${f.id + ' - ' + f.nomeFuncao}"
+                            th:selected="${pessoa.funcao?.id == f.id}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Nome da Função</strong></td>
+            <td th:text="${pessoa.funcao?.nomeFuncao}"></td>
+        </tr>
+        <tr>
+            <td><strong>Classificação da Função</strong></td>
+            <td th:text="${pessoa.funcao?.classificacaoFuncional}"></td>
+        </tr>
+        </tbody>
+    </table>
+</fieldset>
+<div>
+    <button type="submit">Salvar Alterações</button>
+    <a th:href="@{/pessoa/ui/listar}" class="botao">Cancelar</a>
+</div>
+</form>
+</body>
+</html>

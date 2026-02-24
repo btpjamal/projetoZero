@@ -67,7 +67,18 @@ td a {
   transition: color 0.2s ease-in-out;
 }
 
-td a:hover {
-  color: #2c6fb2;
-  text-decoration: underline;
+.botao {
+  display: inline-block;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.botao:hover {
+  background-color: #2c6fb2;
 }
