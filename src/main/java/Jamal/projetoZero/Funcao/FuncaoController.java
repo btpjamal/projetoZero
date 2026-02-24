@@ -24,7 +24,7 @@ public class FuncaoController {
 
     @GetMapping("/listar")
     public ResponseEntity<List<FuncaoDTO>> listarFuncoes() {
-        List<FuncaoDTO> funcoes = funcaoService.listarFuncaos();
+        List<FuncaoDTO> funcoes = funcaoService.listarFuncoes();
         return ResponseEntity.ok(funcoes);
     }
 

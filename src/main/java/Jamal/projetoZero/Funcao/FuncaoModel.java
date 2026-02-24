@@ -20,6 +20,7 @@ import java.util.List;
 public class FuncaoModel {
     @Id
     @Column(name = "id_funcoes")
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Gerar ID automaticamente
     private Long id;
 
     @Column(name = "nome_funcao")

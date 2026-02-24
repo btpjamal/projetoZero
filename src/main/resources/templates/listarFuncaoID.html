@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tabela de Funções</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+</head>
+<body>
+<fieldset>
+    <legend><h1>Função</h1></legend>
+    <td>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Classificação</th>
+                <th>Encarregados</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="${funcao.id}"></td>
+                <td th:text="${funcao.nomeFuncao}"></td>
+                <td th:text="${funcao.classificacaoFuncional}"></td>
+                <td>
+                    <ul>
+                        <li th:each="p : ${pessoas}">
+                            <span th:text="${p.id}"></span> -
+                            <span th:text="${p.nome}"></span> -
+                            <span th:text="${p.idade}"></span> -
+                            <span th:text="${p.funcao.nomeFuncao}"></span>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(pessoas)}">
+                <td colspan="4">Nenhum encarregado encontrado.</td>
+            </tr>
+            </tbody>
+        </table>
+</fieldset>
+<a th:href="@{/funcao/ui/listar}" class="botao">Voltar</a>
+</body>
+</html>

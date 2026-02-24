@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cadastrar nova função</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+</head>
+<body>
+<fieldset>
+    <legend><h1>Cadastrar nova função</h1></legend>
+    <form th:action="@{/funcao/ui/cadastrar}" method="post">
+        <label for="nomeFuncao">Nome da função:</label>
+        <input type="text" id="nomeFuncao" name="nomeFuncao" required>
+        <label for ="ClassificacaoFuncional">Classificação:</label>
+        <select id="ClassificacaoFuncional" name="classificacaoFuncional" required>
+            <option value="">Selecione uma classificação</option>
+            <option value="Técnica">Técnica</option>
+            <option value="Administrativa">Administrativa</option>
+            <option value="Gerencial">Gerencial</option>
+        </select>
+        <button type="submit" class="botao">Cadastrar</button>
+    </form>
+</fieldset>
+</body>
+</html>

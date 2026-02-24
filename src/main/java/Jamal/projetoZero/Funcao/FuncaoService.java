@@ -30,7 +30,15 @@ public class FuncaoService {
     }
 
     // Listar todas as Funcoes (READ)
-    public List<FuncaoDTO> listarFuncaos() {
+    public List<FuncaoDTO> listarFuncoes() {
+        return funcaoRepository.findAll()
+                .stream()
+                .map(funcaoMapper::map)
+                .toList();
+    }
+
+    // Listar pessoas por Funcao (READ)
+    public List<FuncaoDTO> listarPessoasPorFuncao() {
         return funcaoRepository.findAll()
                 .stream()
                 .map(funcaoMapper::map)
