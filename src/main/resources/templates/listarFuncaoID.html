@@ -26,16 +26,16 @@
                 <td th:text="${funcao.classificacaoFuncional}"></td>
                 <td>
                     <ul>
-                        <li th:each="p : ${pessoas}">
-                            <span th:text="${p.id}"></span> -
-                            <span th:text="${p.nome}"></span> -
-                            <span th:text="${p.idade}"></span> -
-                            <span th:text="${p.funcao.nomeFuncao}"></span>
+                        <li th:each="pessoa : ${pessoas}">
+                            <span th:text="${pessoa.id}"></span> -
+                            <span th:text="${pessoa.nome}"></span> -
+                            <span th:text="${pessoa.idade}"></span> -
+                            <span th:text="${pessoa.funcao.nomeFuncao}"></span>
                         </li>
                     </ul>
                 </td>
             </tr>
-            <tr th:if="${#lists.isEmpty(pessoas)}">
+            <tr th:if="${#lists.isEmpty(pessoa)}">
                 <td colspan="4">Nenhum encarregado encontrado.</td>
             </tr>
             </tbody>

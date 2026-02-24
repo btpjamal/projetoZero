@@ -44,7 +44,7 @@ public class FuncaoControllerUI {
         if (funcao != null) {
             model.addAttribute("funcao", funcao); // adiciona a função ao modelo
             List<FuncaoDTO> pessoas = funcaoService.listarPessoasPorFuncao();
-            model.addAttribute("pessoas", pessoas); // adiciona a lista de pessoas ao modelo
+            model.addAttribute("pessoa", pessoas); // adiciona a lista de pessoas ao modelo
             return "listarFuncaoID"; // página HTML para exibir os detalhes da função
         } else {
             return "Função não encontrada"; // ou redirecionar para uma página de erro

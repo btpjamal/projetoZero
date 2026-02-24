@@ -1,6 +1,9 @@
 package Jamal.projetoZero.Funcao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 //JpaRepository -> "facilitador" semelhante ao lombok
 // 1 atributo -> classe a ser escaneada

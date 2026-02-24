@@ -5,6 +5,7 @@ import Jamal.projetoZero.Funcao.FuncaoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class FuncaoService {
@@ -37,13 +38,6 @@ public class FuncaoService {
                 .toList();
     }
 
-    // Listar pessoas por Funcao (READ)
-    public List<FuncaoDTO> listarPessoasPorFuncao() {
-        return funcaoRepository.findAll()
-                .stream()
-                .map(funcaoMapper::map)
-                .toList();
-    }
 
     // Listar Funcao por ID (READ)
     public FuncaoDTO listarFuncaoPorID(Long id) {
