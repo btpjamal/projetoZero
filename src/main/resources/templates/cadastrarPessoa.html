@@ -40,7 +40,12 @@
 
     <fieldset>
         <legend><h1>Função</h1></legend>
-        <table>
+
+        <div th:if="${#lists.isEmpty(funcoes)}" style="color:red; font-weight:bold;">
+            ⚠ Nenhuma função cadastrada. Cadastre uma função antes de associar à pessoa.
+        </div>
+
+        <table th:if="${!#lists.isEmpty(funcoes)}">
             <tbody>
             <tr>
                 <td><strong>ID / Seleção</strong></td>

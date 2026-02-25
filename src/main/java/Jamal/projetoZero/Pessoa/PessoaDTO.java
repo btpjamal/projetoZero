@@ -1,5 +1,6 @@
 package Jamal.projetoZero.Pessoa;
 
+import Jamal.projetoZero.Funcao.FuncaoDTO;
 import Jamal.projetoZero.Funcao.FuncaoModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,4 +17,9 @@ public class PessoaDTO {
     private int idade;
     private FuncaoModel funcao;
     private String cpf;
+
+    public PessoaDTO(Long id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
 }

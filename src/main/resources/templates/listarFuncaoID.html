@@ -3,44 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tabela de Funções</title>
+    <title>Listar função pelo ID</title>
     <link rel="stylesheet" th:href="@{/style.css}" />
 </head>
 <body>
 <fieldset>
-    <legend><h1>Função</h1></legend>
-    <td>
-        <table>
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Classificação</th>
-                <th>Encarregados</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td th:text="${funcao.id}"></td>
-                <td th:text="${funcao.nomeFuncao}"></td>
-                <td th:text="${funcao.classificacaoFuncional}"></td>
-                <td>
-                    <ul>
-                        <li th:each="pessoa : ${pessoas}">
-                            <span th:text="${pessoa.id}"></span> -
-                            <span th:text="${pessoa.nome}"></span> -
-                            <span th:text="${pessoa.idade}"></span> -
-                            <span th:text="${pessoa.funcao.nomeFuncao}"></span>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-            <tr th:if="${#lists.isEmpty(pessoa)}">
-                <td colspan="4">Nenhum encarregado encontrado.</td>
-            </tr>
-            </tbody>
-        </table>
+    <legend><h1>Informações da função</h1></legend>
+    <table>
+        <tbody>
+        <tr>
+            <td><strong>ID</strong></td>
+            <td th:text="${funcao.id}"></td>
+        </tr>
+        <tr>
+            <td><strong>Nome da função</strong></td>
+            <td th:text="${funcao.nomeFuncao}"></td>
+        </tr>
+        <tr>
+            <td><strong>Classificação Funcional</strong></td>
+            <td th:text="${funcao.ClassificacaoFuncional}"></td>
+        </tr>
+
+        </tbody>
+    </table>
 </fieldset>
+<fieldset>
+    <legend><h1>Pessoas Associadas</h1></legend>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="pessoa : ${pessoasAssociadas}">
+            <td th:text="${pessoa.id}"></td>
+            <td th:text="${pessoa.nome}"></td>
+        </tr>
+        </tbody>
+    </table>
+</fieldset>
+
 <a th:href="@{/funcao/ui/listar}" class="botao">Voltar</a>
 </body>
 </html>

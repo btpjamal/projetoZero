@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alterar Função</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+</head>
+<body>
+<form th:action="@{/funcao/ui/alterar/{id}(id=${funcao.id})}" method="post">
+<fieldset>
+    <legend><h1>Alterar Dados da Função</h1></legend>
+
+        <div>
+            <label for="id">ID:</label>
+            <input type="text" id="id" th:value="${funcao.id}" disabled readonly>
+        </div>
+
+        <div>
+            <label for="nomeFuncao">Nome da Função:</label>
+            <input type="text" id="nomeFuncao" name="nomeFuncao" th:value="${funcao.nomeFuncao}" required>
+        </div>
+
+        <div>
+            <label for="ClassificacaoFuncional">ClassificacaoFuncional:</label>
+            <input type="text" id="ClassificacaoFuncional" name="ClassificacaoFuncional" th:value="${funcao.ClassificacaoFuncional}" required>
+        </div>
+
+
+</fieldset>
+
+<div>
+    <button type="submit">Salvar Alterações</button>
+    <a th:href="@{/funcao/ui/listar}" class="botao">Cancelar</a>
+</div>
+</form>
+</body>
+</html>

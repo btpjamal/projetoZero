@@ -1,10 +1,14 @@
 package Jamal.projetoZero.Funcao;
 
+import Jamal.projetoZero.Pessoa.PessoaDTO;
+import Jamal.projetoZero.Pessoa.PessoaRepository;
+import Jamal.projetoZero.Pessoa.PessoaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -12,11 +16,13 @@ import java.util.List;
 @RequestMapping("/funcao/ui")
 public class FuncaoControllerUI {
 
-    private FuncaoService funcaoService;
+    private final FuncaoService funcaoService;
+    private final PessoaService pessoaService;
 
 
-    public FuncaoControllerUI(FuncaoService funcaoService) {
+    public FuncaoControllerUI(FuncaoService funcaoService, PessoaService pessoaService) {
         this.funcaoService = funcaoService;
+        this.pessoaService = pessoaService;
     }
 
     @GetMapping("/cadastrar")
@@ -39,34 +45,42 @@ public class FuncaoControllerUI {
     }
 
     @GetMapping("/listar/{id}")
-    public String listarFuncaoPorId(@PathVariable Long id, Model model) {
+    public String mostrarFuncaoID(@PathVariable Long id, Model model){
         FuncaoDTO funcao = funcaoService.listarFuncaoPorID(id);
         if (funcao != null) {
-            model.addAttribute("funcao", funcao); // adiciona a função ao modelo
-            List<FuncaoDTO> pessoas = funcaoService.listarPessoasPorFuncao();
-            model.addAttribute("pessoa", pessoas); // adiciona a lista de pessoas ao modelo
-            return "listarFuncaoID"; // página HTML para exibir os detalhes da função
+            model.addAttribute("funcao", funcao);
+            // Adiciona a lista de pessoas associadas à função ao modelo
+            List<PessoaDTO> pessoasAssociadas = pessoaService.findByFuncaoId(id)
+                    .stream()
+                    .map(pessoa -> new PessoaDTO(pessoa.getId(), pessoa.getNome())) // mapeia para PessoaDTO, omitindo a função para evitar recursão
+                    .toList();
+            model.addAttribute("pessoasAssociadas", pessoasAssociadas);
+            return "listarFuncaoID"; // nome da página HTML para exibir os detalhes da função
         } else {
-            return "Função não encontrada"; // ou redirecionar para uma página de erro
+            return "redirect:/menu"; // ou redirecionar para uma página de erro
         }
     }
 
-    @PutMapping("/alterar/{id}")
-    public String alterarFuncao(@PathVariable Long id, @RequestBody FuncaoDTO funcaoAtualizada) {
-        if (funcaoService.listarFuncaoPorID(id) == null) {
-            return "";
+    @GetMapping("/alterar/{id}")
+    public String mostrarFormularioAlteracao(@PathVariable Long id, Model model) {
+        FuncaoDTO funcao = funcaoService.listarFuncaoPorID(id);
+        if (funcao != null) {
+            model.addAttribute("funcao", funcao); // adiciona a função ao modelo para preencher o formulário
+            return "alterarFuncao"; // página HTML com o formulário de alteração
+        }else{
+            return "redirect:/menu"; // ou redirecionar para uma página de erro
         }
+    }
+
+    @PostMapping("/alterar/{id}")
+    public String alterarFuncao(@PathVariable Long id, @ModelAttribute FuncaoDTO funcaoAtualizada) {
         funcaoService.atualizarFuncao(id, funcaoAtualizada);
-        return "redirect:/menu"; // redireciona para o menu após atualizar a função
+        return "redirect:/funcao/ui/listar";
     }
 
-    @DeleteMapping("/deletar/{id}")
+    @GetMapping("/deletar/{id}")
     public String deletarFuncao(@PathVariable Long id) {
-        if (funcaoService.listarFuncaoPorID(id) != null) {
-            funcaoService.deletarFuncao(id);
-            return "redirect:/menu"; // redireciona para o menu após deletar a função
-        } else {
-            return ""; // ou redirecionar para uma página de erro
-        }
+        funcaoService.deletarFuncao(id);
+        return "redirect:/funcao/ui/listar"; // redireciona para o menu após deletar a função
     }
 }

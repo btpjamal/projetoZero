@@ -5,6 +5,7 @@ import Jamal.projetoZero.Funcao.FuncaoModel;
 import Jamal.projetoZero.Funcao.FuncaoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -76,4 +77,11 @@ public class PessoaService {
         pessoaRepository.deleteById(id);
     }
 
+    // listar todas as pessoas associadas a uma função específica
+    public List<PessoaDTO> findByFuncaoId(Long funcaoId) {
+        List<PessoaModel> pessoas = pessoaRepository.findByFuncaoId(funcaoId);
+        return pessoas.stream()
+                .map(pessoaMapper::map) // converte cada PessoaModel para PessoaDTO
+                .toList(); // coleta os resultados em uma lista e retorna
+    }
 }
